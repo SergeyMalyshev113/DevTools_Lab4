@@ -1,3 +1,4 @@
 .env
 students.db
 __pycache__
+mem.json

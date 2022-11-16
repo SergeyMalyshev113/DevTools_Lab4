@@ -1,4 +1,5 @@
 from aiogram import Bot, Dispatcher, types, executor
+import json
 import os
 from dotenv import load_dotenv, find_dotenv
 import sqlite3
@@ -60,7 +61,12 @@ async def start(message):
 @dp.message_handler(state=Form.menu, text='Вкинь мем')
 async def mem(message: types.Message, state: FSMContext):
     userid = message.from_user.id
-    pass
+    key = str(randint(1, 11))
+    f = open('mem.json', 'r', encoding='utf-8')
+    js = json.loads(f.read())
+    await message.answer(js['MemesForBot'][f'{key}'])
+    f.close()
+
 
 
 @dp.message_handler(state=Form.menu, text='Подбрось монетку')
