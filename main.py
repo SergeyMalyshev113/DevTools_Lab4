@@ -37,7 +37,6 @@ data_base()
 
 # ----------- Клавиатурa -----------
 markup = types.ReplyKeyboardMarkup(resize_keyboard=True).add(kb.mem).add(kb.monetka).add(kb.random)
-markup_random = types.ReplyKeyboardMarkup(resize_keyboard=True).add(kb.back)
 
 # ---------- Машина состояний ----------
 class Form(StatesGroup): # Инициализация состояний для перехода между хэндлерами
@@ -85,7 +84,7 @@ async def monetka(message: types.Message, state: FSMContext):
 @dp.message_handler(state=Form.menu, text='Рандомное число')
 async def random_init(message: types.Message, state: FSMContext):
     userid = message.from_user.id
-    await message.answer('Введите минимальное значение:')
+    await message.answer('Введите минимальное значение:', reply_markup=types.ReplyKeyboardRemove())
     await Form.random_min.set()
 
 
@@ -110,7 +109,7 @@ async def random_result(message: types.Message, state: FSMContext):
         max_val = int(message.text)
         min_val = cursor.execute("SELECT random_min FROM users WHERE id = ?", [userid]).fetchone()[0]
         res = int(randint(min_val, max_val))
-        await message.answer(f'Ваше число: {res}')
+        await message.answer(f'Ваше число: {res}', reply_markup=markup)
         await Form.menu.set()
     except:
         await message.answer('ты придурка за меня не держи, цифру введи')
