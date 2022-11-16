@@ -1,5 +1,4 @@
 print('1')
 print("12")
 print("123")
-print("1234")
-print("5")
+print("6")
