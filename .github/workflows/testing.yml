@@ -11,8 +11,8 @@ jobs:
     runs-on:  windows-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install pyhon
-        uses: actions/setuppython@v2
+      - name: Install python
+        uses: actions/setup-python@v2
         with:
           python-version: 3.10
       - name: Install deps
