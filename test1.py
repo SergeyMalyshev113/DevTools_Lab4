@@ -1,1 +1,1 @@
-print('Loh')
+print('1')
