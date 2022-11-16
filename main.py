@@ -56,7 +56,7 @@ async def start(message):
             cursor.execute("INSERT INTO users(id) VALUES(?)", [userid])
             db.commit()
     await Form.menu.set()
-    await message.answer('Привет, я бот для четвёртой лабы по ПО (лох короче какой-то)', reply_markup=markup)
+    await message.answer('Привет, я бот для четвёртой лабы по ПО', reply_markup=markup)
 
 
 @dp.message_handler(state=Form.menu, text='Вкинь мем')
@@ -89,7 +89,6 @@ async def random_init(message: types.Message, state: FSMContext):
     await Form.random_min.set()
 
 
-
 @dp.message_handler(state=Form.random_min)
 async def random_min(message: types.Message, state: FSMContext):
     try:
@@ -116,7 +115,6 @@ async def random_result(message: types.Message, state: FSMContext):
     except:
         await message.answer('ты придурка за меня не держи, цифру введи')
         return
-
 
 
 if __name__ == '__main__':
