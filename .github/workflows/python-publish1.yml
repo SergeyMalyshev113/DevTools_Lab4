@@ -17,4 +17,6 @@ jobs:
       with:
         python-version: '3.10' 
     - run: python test1.py
+    - run:
+       if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - run: python main.py
